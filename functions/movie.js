@@ -3,35 +3,35 @@ const request = require('./await-request');
 /*let wreck = require("@hapi/wreck")
 let querystring = require("querystring")*/
 
-function excludeGenres(expression) {
-  var exclude = '';
+function getGenres(expression) {
+  var genres = '';
   if (expression == 'angry') {
-    exclude = '16,35,18,10751,36,27,10402,9648,10749,878,10770,53,10752,37';
+    genres = '28, 12, 14, 80, 99';
   } else if (expression == 'disgusted') {
-    exclude = '28,12,16,35,18,10751,14,36,9648,10749,878,10770,10752,37';
+    genres = '10402, 27, 53, 80, 99';
   } else if (expression == 'fearful') {
-    exclude = '28,12,80,99,18,10751,14,36,10402,10749,878,10770,10752,37';
+    genres = '27, 53, 9648';
   } else if (expression == 'happy') {
-    exclude = '12,80,99,14,36,27,10402,9648,878,10770,53,10752,37';
+    genres = '35, 10751, 16, 28, 10749, 18';
   } else if (expression == 'neutral') {
-    exclude = '';
+    genres = '';
   } else if (expression == 'sad') {
-    exclude = '28,12,35,80,99,18,14,36,27,9648,878,10770,53,10752,37';
+    genres = '10749, 14, 10751';
   } else if (expression == 'surprised') {
-    exclude = '28,12,16,35,10751,14,36,27,10402,10749,878,10770,53,37';
+    genres = '18, 9648, 80, 99, 10752';
   }
-  return exclude;
+  return genres;
 }
 
 module.exports = async function getMovie(expression, api_key) {
-  var exclude = excludeGenres(expression);
+  var genres = getGenres(expression);
   var page = Math.floor(Math.random() * 50) + 1;
 
   var options = { method: 'GET',
   url: 'https://api.themoviedb.org/3/discover/movie',
   qs:
    { page: ''+page,
-     without_genres: exclude,
+     with_genres: genres,
      include_adult: 'false',
      sort_by: 'popularity.desc',
      language: 'en-US',
