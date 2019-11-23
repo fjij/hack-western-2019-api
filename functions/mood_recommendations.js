@@ -15,7 +15,6 @@ const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 			sad,
 			suprised
 */
-
 module.exports = async (expression) => {
 
 	// Prepare workflow object to store API responses
@@ -33,7 +32,7 @@ module.exports = async (expression) => {
 	} else {
 		giphy_search = "lake";
 	}
-
+	giphy();
 
 	result.step1 = {};
 	result.step1.gifs = await lib.giphy.search['@0.0.9'].gifs({
@@ -43,3 +42,7 @@ module.exports = async (expression) => {
 	result.test = {test_key: process.env.TEST_KEY};
 	return result;
 };
+
+function giphy() {
+	return;
+}
