@@ -45,5 +45,5 @@ async function giphy(expression) {
 		rating: `pg`
 	});
 
-	return gifs;
+	return gifs.slice(0, 3).map(x => x.images.original.url);
 }

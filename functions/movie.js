@@ -43,11 +43,11 @@ module.exports = async function getMovie(expression, api_key) {
   var movies = JSON.parse(response).results
   var j = 0;
 
-  while (data.length < 10) {
+  while (data.length < 3) {
     i = Math.floor(Math.random() * 10) + 1;
     if (!unique_index.includes(i)) {
       unique_index.push(i);
-      data.push({Title: movies[i].original_title, Poster: movies[i].poster_path, Summary: movies[i].overview});
+      data.push({Title: movies[i].original_title, Poster: "https://image.tmdb.org/t/p/w370_and_h556_bestv2/"+movies[i].poster_path, Summary: movies[i].overview});
     }
   }
 
