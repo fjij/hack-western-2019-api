@@ -25,11 +25,12 @@ function excludeGenres(expression) {
 
 module.exports = async function getMovie(expression, api_key) {
   var exclude = excludeGenres(expression);
+  var page = Math.floor(Math.random() * 50) + 1;
 
   var options = { method: 'GET',
   url: 'https://api.themoviedb.org/3/discover/movie',
   qs:
-   { page: '1',
+   { page: ''+page,
      without_genres: exclude,
      include_adult: 'false',
      sort_by: 'popularity.desc',
