@@ -5,10 +5,6 @@
 */
 
 
-Math.random()
-
-var a = Math.floor((Math.random() * 50)); //a is a random number between 1 and 50
-
 const request = require ("./await-request")
 
 module.exports = async function spotify (expression){
@@ -55,6 +51,8 @@ for(var i =0; i<50; i++){
 //console.log(arr)
 //console.log(arr[0].playlist_id)
 
+var a = Math.floor((Math.random() * 50)); //a is a random number between 0 and 49
+
 var options = { method: 'GET',
   url: `https://api.spotify.com/v1/playlists/${arr[a].playlist_id}/tracks`,
   headers:
@@ -88,7 +86,6 @@ console.log('Song: ', selectedTrack.id);
 //console.log(arr);
 return {Artists:selectedTrack.artists.map(artist=>artist.name),
   Song: selectedTrack.name,
-  id:selectedTrack.id, 
+  id:selectedTrack.id,
 Image_url:selectedTrack.album.images[0].url} //id gives ID
 }
-
