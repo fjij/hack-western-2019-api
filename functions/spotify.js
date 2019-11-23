@@ -1,7 +1,6 @@
 /**
 * An HTTP endpoint that acts as a webhook for HTTP or Webhook request event
 * @param {string} expression
-* @param {string} token
 * @returns {object} result The result of your workflow steps
 */
 
@@ -12,7 +11,9 @@ var a = Math.floor((Math.random() * 50) + 1); //a is a random number between 1 a
 
 const request = require ("./await-request")
 
-module.exports = async function spotify (expression,token){
+module.exports = async function spotify (expression){
+
+  var token = process.env.SPOTIFY_TOKEN
 
 
 
