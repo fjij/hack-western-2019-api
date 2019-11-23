@@ -7,23 +7,31 @@
 
 Math.random()
 
-var a = Math.floor((Math.random() * 50) + 1); //a is a random number between 1 and 50
+var a = Math.floor((Math.random() * 50)); //a is a random number between 1 and 50
 
 const request = require ("./await-request")
 
 module.exports = async function spotify (expression){
 
-  var token = process.env.SPOTIFY_TOKEN
+  //var token = process.env.SPOTIFY_TOKEN
 
+  var options = { method: 'POST',
+    url: 'https://accounts.spotify.com/api/token',
+    headers:
+     { Authorization: 'Basic '+process.env.SPOTIFY_KEY_ENCODED,
+       'Content-Type': 'application/x-www-form-urlencoded' },
+    form: { grant_type: 'client_credentials' } };
 
+	try {body = await request(options)}
+	  catch(e){return "error"}
 
-
+	var token = JSON.parse(body).access_token;
 
 var arr = []; //emptry array that will store name of playlist and id of playlist
-var options = { method: 'GET',
+ options = { method: 'GET',
   url: 'https://api.spotify.com/v1/search',
   qs: { q: expression, type: 'playlist', limit: '50' },
-  headers: 
+  headers:
    { Authorization: 'Bearer '+ token } };
 
 try {body = await request(options)}
@@ -49,7 +57,7 @@ for(var i =0; i<50; i++){
 
 var options = { method: 'GET',
   url: `https://api.spotify.com/v1/playlists/${arr[a].playlist_id}/tracks`,
-  headers: 
+  headers:
    { Authorization: 'Bearer '+ token } };
 
 try {body = await request(options)}
