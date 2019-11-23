@@ -81,8 +81,14 @@ console.log('Artists: ', selectedTrack.artists.map(artist=>artist.name));
 console.log('Song: ', selectedTrack.name);
 console.log('Song: ', selectedTrack.id);
 
+
+
 //console.log('AVailable MArkets: ', selectedTrack.available_markets)
 
 //console.log(arr);
-return {Artists:selectedTrack.artists.map(artist=>artist.name),Song: selectedTrack.name,id:selectedTrack.id} //id gives ID
+return {Artists:selectedTrack.artists.map(artist=>artist.name),
+  Song: selectedTrack.name,
+  id:selectedTrack.id, 
+Image_url:selectedTrack.album.images[0].url} //id gives ID
 }
+
