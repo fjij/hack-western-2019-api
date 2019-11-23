@@ -1,4 +1,5 @@
 const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
+const movie = require('./movie');
 /**
 * An HTTP endpoint that acts as a webhook for HTTP or Webhook request event
 * @param {object} expression
@@ -21,6 +22,7 @@ module.exports = async (expression) => {
 
 	// giphy
 	result.giphy = await giphy(expression);
+	result.movie = await movie(expression, process.env.MOVIE_KEY);
 
 	//result.test = {test_key: process.env.TEST_KEY};
 	return result;

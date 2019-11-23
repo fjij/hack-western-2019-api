@@ -23,7 +23,7 @@ function excludeGenres(expression) {
   return exclude;
 }
 
-async function getMovie(expression, api_key) {
+module.exports = async function getMovie(expression, api_key) {
   var exclude = excludeGenres(expression);
 
   var options = { method: 'GET',
@@ -53,5 +53,3 @@ async function getMovie(expression, api_key) {
 
   return data;
 }
-
-export {getMovie as default};
