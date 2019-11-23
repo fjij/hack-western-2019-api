@@ -17,32 +17,31 @@ const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 */
 module.exports = async (expression) => {
 
-	// Prepare workflow object to store API responses
-
 	let result = {};
 
-	// Giphy Integration
+	// giphy
+	result.giphy = await giphy(expression);
+
+	//result.test = {test_key: process.env.TEST_KEY};
+	return result;
+};
+
+async function giphy(expression) {
 
 	console.log(`Running giphy.search[@0.0.9].gifs()...`);
 
-	// giphy test
 	let giphy_search;
+
 	if (expression != "neutral") {
 		giphy_search = "dogs";
 	} else {
 		giphy_search = "lake";
 	}
-	giphy();
 
-	result.step1 = {};
-	result.step1.gifs = await lib.giphy.search['@0.0.9'].gifs({
-	query: `${giphy_search}`,
-	rating: `pg`
+	gifs = await lib.giphy.search['@0.0.9'].gifs({
+		query: `${giphy_search}`,
+		rating: `pg`
 	});
-	result.test = {test_key: process.env.TEST_KEY};
-	return result;
-};
 
-function giphy() {
-	return;
+	return gifs;
 }
