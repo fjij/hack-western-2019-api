@@ -39,17 +39,23 @@ module.exports = async function getMovie(expression, api_key) {
 
   var data = [];
   var unique_index = [];
-  var response = await request(options);
-  var movies = JSON.parse(response).results
-  var j = 0;
+  try {
+    var response = await request(options);
+    var movies = JSON.parse(response).results
+    var j = 0;
 
-  while (data.length < 3) {
-    i = Math.floor(Math.random() * 10) + 1;
-    if (!unique_index.includes(i)) {
-      unique_index.push(i);
-      data.push({Title: movies[i].original_title, Poster: "https://image.tmdb.org/t/p/w370_and_h556_bestv2/"+movies[i].poster_path, Summary: movies[i].overview});
+    while (data.length < 3) {
+      i = Math.floor(Math.random() * 10) + 1;
+      if (!unique_index.includes(i)) {
+        unique_index.push(i);
+        data.push({Title: movies[i].original_title, Poster: "https://image.tmdb.org/t/p/w370_and_h556_bestv2/"+movies[i].poster_path, Summary: movies[i].overview});
+      }
     }
+  } catch(e) {
+    console.log(e);
+    return "error";
   }
 
   return data;
+
 }
