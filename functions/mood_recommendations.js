@@ -13,7 +13,7 @@ const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 			happy,
 			neutral,
 			sad,
-			suprised
+			surprised
 */
 module.exports = async (expression) => {
 
