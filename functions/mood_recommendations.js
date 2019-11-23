@@ -32,18 +32,12 @@ async function giphy(expression) {
 
 	console.log(`Running giphy.search[@0.0.9].gifs()...`);
 
-	let giphy_search;
-
-	if (expression != "neutral") {
-		giphy_search = "dogs";
-	} else {
-		giphy_search = "lake";
-	}
+	let giphy_search = expression;
 
 	gifs = await lib.giphy.search['@0.0.9'].gifs({
 		query: `${giphy_search}`,
 		rating: `pg`
 	});
-
-	return gifs.slice(0, 3).map(x => x.images.original.url);
+	var i = Math.floor(Math.random() * 50);
+	return gifs.slice(i, i+3).map(x => x.images.original.url);
 }
