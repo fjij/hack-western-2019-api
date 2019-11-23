@@ -1,24 +1,42 @@
 const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 /**
 * An HTTP endpoint that acts as a webhook for HTTP or Webhook request event
-* @param {string} mood
+* @param {object} expressions
 * @returns {object} result The result of your workflow steps
 */
-module.exports = async (mood) => {
 
-  // Prepare workflow object to store API responses
+/*
+	expressions:
+		{
+			angry,
+			disgusted,
+			fearful,
+			happy,
+			neutral,
+			sad,
+			suprised
+		}
+	Each emotion stores a value from 0 to 1 based on its probability
+*/
 
-  let result = {};
+module.exports = async (expressions) => {
 
-  // [Workflow Step 1]
+	// Prepare workflow object to store API responses
 
-  console.log(`Running giphy.search[@0.0.9].gifs()...`);
+	let result = {};
 
-  result.step1 = {};
-  result.step1.gifs = await lib.giphy.search['@0.0.9'].gifs({
-    query: `${mood}`,
-    rating: `pg`
-  });
+	// Giphy Integration
 
-  return result;
+	console.log(`Running giphy.search[@0.0.9].gifs()...`);
+
+	const giphy_search = "dogs";
+
+	result.step1 = {};
+	result.step1.gifs = await lib.giphy.search['@0.0.9'].gifs({
+	query: `${giphy_search}`,
+	rating: `pg`
+	});
+	result.test = {test_key: process.env.TEST_KEY};
+
+	return result;
 };
