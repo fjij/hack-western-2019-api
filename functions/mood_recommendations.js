@@ -38,6 +38,6 @@ async function giphy(expression) {
 		query: `${giphy_search}`,
 		rating: `pg`
 	});
-	var i = Math.floor(Math.random() * 50);
+	var i = Math.floor(Math.random() * 17);
 	return gifs.slice(i, i+3).map(x => x.images.original.url);
 }
