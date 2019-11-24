@@ -6,7 +6,7 @@ let querystring = require("querystring")*/
 function getGenres(expression) {
   var genres = '';
   if (expression == 'angry') {
-    genres = '28, 12, 14, 80, 99';
+    genres = '28, 12, 14, 80, 99, 9648';
   } else if (expression == 'disgusted') {
     genres = '10402, 27, 53, 80, 99';
   } else if (expression == 'fearful') {
@@ -16,7 +16,7 @@ function getGenres(expression) {
   } else if (expression == 'neutral') {
     genres = '';
   } else if (expression == 'sad') {
-    genres = '10749, 14, 10751';
+    genres = '10749, 10751, 18, 10402, 16';
   } else if (expression == 'surprised') {
     genres = '18, 9648, 80, 99, 10752';
   }
